@@ -1,0 +1,8 @@
+# Error codes for mySQL
+
+## 1005 - Can't create table
+
+MySQL could not create a table.
+Two possible cases: 
+- Foreign key constraints (does the FK exist before creation?)
+- Are you renaming an internal table ?
