@@ -19,3 +19,11 @@ Troubleshooting
 
 Troubleshooing: Error caused by copy-paste.
 
+## Error: 1095 SQLSTATE: HY000 (ER_KILL_DENIED_ERROR)
+
+Message: You are not owner of thread %lu 
+
+Troubleshooting:
+
+- Are you the owner of the thread you're trying to kill?
+- Do you have sufficient permissions to kill a thread lauched by another user?
