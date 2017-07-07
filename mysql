@@ -1,8 +1,16 @@
 # Error codes for mySQL
 
-## 1005 - Can't create table
+## Error Code: 1005. Can't create table
 
 MySQL could not create a table.
 Two possible cases: 
 - Foreign key constraints (does the FK exist before creation?)
 - Are you renaming an internal table ?
+
+## Error Code: 1044. Access denied for user 'user'@'10.%.%.%' to database 'databaseName'
+
+Troubleshooting
+
+- DatabaseName: In mySQL database names are CaSe SeNsItIvE.
+- Username incorrect?
+- And finally.. permissions.
