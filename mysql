@@ -14,3 +14,8 @@ Troubleshooting
 - DatabaseName: In mySQL database names are CaSe SeNsItIvE.
 - Username incorrect?
 - And finally.. permissions.
+
+## Error Code: 1075. Incorrect table definition; there can be only one auto column and it must be defined as a key
+
+Troubleshooing: Error caused by copy-paste.
+
