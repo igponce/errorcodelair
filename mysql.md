@@ -27,3 +27,27 @@ Troubleshooting:
 
 - Are you the owner of the thread you're trying to kill?
 - Do you have sufficient permissions to kill a thread lauched by another user?
+
+## Error Code: 1451. Cannot delete or update a parent row: a foreign key constraint fails ( details about the foreign key )
+
+Looks like someone defined foreign keys in the database... 
+People call this referential integrity. 
+This means in order to delete/update the table you'll need to 
+delete/update other stuff first.
+
+
+## Error Code: 1701. Cannot truncate a table referenced in a foreign key constraint ( details about the foreign key constrain )
+
+This is like error code 1451 above.
+Foreign keys force you to update and remove data in a particular order.
+Try to remove the data that refereces this table first.
+Be warned MySQL can have cross-database constraints!
+
+
+## Error Code: 1175. You are using safe update mode and you tried to update a table without a WHERE that uses a KEY column To disable safe mode, toggle the option in Preferences -> SQL Editor and reconnect.
+
+This is a MySQL Workbench error to avoid deleting data unexpectedly.
+
+If you want to delete/update a whole table don't look for the prefences option:
+this error acts as your life vest and wi. The alternative is simple: just add 
+*WHERE <key> NOT NULL* to your SQL statement.
