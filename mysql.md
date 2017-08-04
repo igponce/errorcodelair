@@ -28,6 +28,27 @@ Troubleshooting:
 - Are you the owner of the thread you're trying to kill?
 - Do you have sufficient permissions to kill a thread lauched by another user?
 
+## Error Code: 1222. The used SELECT statements have a different number of columns
+
+You are trying to make a UNION with two tables that have diferent number of columns.
+How to reproduce:
+
+```{sql}
+SELECT 1,2,3,4
+UNION
+SELECT 1
+```
+
+Be careful with UNIONs and data types. You could end up with something unexpected
+like the example below:
+
+```{sql}
+SELECT 1,2,3,4
+UNION
+SELECT 1.1, "hello", 3, 4
+```
+
+
 ## Error Code: 1451. Cannot delete or update a parent row: a foreign key constraint fails ( details about the foreign key )
 
 Looks like someone defined foreign keys in the database... 
@@ -51,3 +72,5 @@ This is a MySQL Workbench error to avoid deleting data unexpectedly.
 If you want to delete/update a whole table don't look for the prefences option:
 this error acts as your life vest and wi. The alternative is simple: just add 
 *WHERE <key> NOT NULL* to your SQL statement.
+
+
