@@ -73,4 +73,32 @@ If you want to delete/update a whole table don't look for the prefences option:
 this error acts as your life vest and wi. The alternative is simple: just add 
 *WHERE <key> NOT NULL* to your SQL statement.
 
+## Error Code: 1427. For float(M,D), double(M,D) or decimal(M,D), M must be >= D (column 'whatever').
+
+This happened trying to change a column from decimal(10,0) to decimal(3,7)...
+... because I thought that (10,0) meant 10 digits total, zero decimal places
+*instead* of 10 digits *total*, 0 of those are for *decimals*.
+
+In case you're wondering how to store properly store longitude/latitude take a look at this table:
+
+|  decimal places |  decimal<br>degrees | DMS         | qualitative scale that can be identified | resolution at equator |
+|-----------------|---------------------|-------------|------------------------------------------|-----------------------|
+| 0               | 1.0                 | 1° 00′ 0″   | country or large region | 111.32&nbsp;km |
+| 1               | 0.1                 | 0° 06′ 0″   | large city or district  |  11.132&nbsp;km |
+| 2               | 0.01                | 0° 00′ 36″  | town or village         | 1.1132&nbsp;km |
+| 3               | 0.001               | 0° 00′ 3.6″ | neighborhood, street    | 111.32 m |
+| 4               | 0.0001              | 0° 00′ 0.36″| individual street, land parcel | 11.132 m |
+| 5               | 0.00001             | 0° 00′ 0.036″| individual trees       | 1.1132 m |
+| 6               | 0.000001            | 0° 00′ 0.0036″| individual humans     | 111.32&nbsp;mm |
+| 7               | 0.0000001           | 0° 00′ 0.00036″| practical limit of commercial surveying | 11.132&nbsp;mm |
+| 8               | 0.00000001          | 0° 00′ 0.000036″| specialized surveying (e.g. [[tectonic plate]] mapping) | 1.1132&nbsp;mm |
+
+Table source: [Wikipedia: Decimal Degrees](https://en.wikipedia.org/wiki/Decimal_degrees#Precision)
+
+
+
+
+
+
+
 
