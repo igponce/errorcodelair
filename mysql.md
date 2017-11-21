@@ -1,4 +1,4 @@
-# Error codes for mySQL
+# MySQL Error code lair
 
 ## Error Code: 1005. Can't create table
 
@@ -56,6 +56,37 @@ People call this referential integrity.
 This means in order to delete/update the table you'll need to 
 delete/update other stuff first.
 
+## Error Code: 1630. FUNCTION *schema_name*.sum does not exist. Check the 'Function Name Parsing and Resolution' section in the Reference Manual
+
+Looka like you have an space character between the function name and the opening parenthesis, like this:
+
+```{sql}
+SELECT sum (column) FROM ...
+```
+
+This applies not just to the sum function; but for any sql function.
+
+How to reproduce:
+
+
+Let's make a 3 row table from scratch:
+
+```{sql}
+SELECT 1 as aa 
+UNION
+SELECT 2 as aa 
+UNION
+SELECT 3 as aa ) 
+```
+
+```{sql}
+SELECT sum(uu.aa) FROM ( SELECT 1 as aa union select 2 as aa union select 3 as aa ) uu;
+``
+
+```{sql}
+SELECT sum (1,2) ;
+```
+
 
 ## Error Code: 1701. Cannot truncate a table referenced in a foreign key constraint ( details about the foreign key constrain )
 
@@ -74,3 +105,6 @@ this error acts as your life vest and wi. The alternative is simple: just add
 *WHERE <key> NOT NULL* to your SQL statement.
 
 
+## Error Code: 2013. Lost connection to MySQL server during query
+
+https://stackoverflow.com/questions/10563619/error-code-2013-lost-connection-to-mysql-server-during-query
