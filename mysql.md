@@ -15,6 +15,11 @@ Troubleshooting
 - Username incorrect?
 - And finally.. permissions.
 
+This is a quick fix for permissions:
+```sql
+grant all privileges on databaseName.* to 'user'@'%';
+```
+
 ## Error Code: 1075. Incorrect table definition; there can be only one auto column and it must be defined as a key
 
 Troubleshooing: Error caused by copy-paste.
@@ -58,7 +63,7 @@ delete/update other stuff first.
 
 ## Error Code: 1630. FUNCTION *schema_name*.sum does not exist. Check the 'Function Name Parsing and Resolution' section in the Reference Manual
 
-Looka like you have an space character between the function name and the opening parenthesis, like this:
+Looks like you have an space character between the function name and the opening parenthesis, like this:
 
 ```{sql}
 SELECT sum (column) FROM ...
@@ -67,7 +72,6 @@ SELECT sum (column) FROM ...
 This applies not just to the sum function; but for any sql function.
 
 How to reproduce:
-
 
 Let's make a 3 row table from scratch:
 
@@ -125,12 +129,6 @@ In case you're wondering how to store properly store longitude/latitude take a l
 | 8               | 0.00000001          | 0° 00′ 0.000036″| specialized surveying (e.g. [[tectonic plate]] mapping) | 1.1132&nbsp;mm |
 
 Table source: [Wikipedia: Decimal Degrees](https://en.wikipedia.org/wiki/Decimal_degrees#Precision)
-
-
-
-
-
-
 
 
 ## Error Code: 2013. Lost connection to MySQL server during query
